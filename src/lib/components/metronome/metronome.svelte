@@ -53,8 +53,9 @@
         if (interval) window.clearInterval(interval)
         if (isPlaying) {
             let tickCount = 0
+            new Audio(metronomeFile).play()
             interval = setInterval(() => {
-                if (tickCount < 5 || Math.random() < metronomePercentage) {
+                if (tickCount < 4 || Math.random() < metronomePercentage) {
                     new Audio(metronomeFile).play()
                 }
                 tickCount++
