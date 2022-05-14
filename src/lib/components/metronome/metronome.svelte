@@ -47,6 +47,7 @@
     let tempo = 120
 
     const handleSubmit = async () => true
+    const metronomeFile = '/metronome.wav'
 
     $: {
         if (interval) window.clearInterval(interval)
@@ -54,13 +55,17 @@
             let tickCount = 0
             interval = setInterval(() => {
                 if (tickCount < 5 || Math.random() < metronomePercentage) {
-                    new Audio('/metronome.wav').play()
+                    new Audio(metronomeFile).play()
                 }
                 tickCount++
             }, 60_000 / tempo)
         }
     }
 </script>
+
+<svelte:head>
+    <link rel="prefetch" href="{metronomeFile}" />
+</svelte:head>
 
 <FormEntity title="Settings" handleSubmit="{handleSubmit}" primaryAction="" secondaryAction="">
     <svelte:fragment slot="extra-actions">
